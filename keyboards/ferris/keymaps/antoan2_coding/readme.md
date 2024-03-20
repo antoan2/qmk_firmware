@@ -1,3 +1,8 @@
+Todo:
+- escape combo on middle finger
+- cap locks on indexes (something like a double shift) 
+- implement the mouse / navigation layer
+
 A usable default keymap for the Ferris keyboard
 ===============================================
 
