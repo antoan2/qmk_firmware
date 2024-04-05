@@ -9,9 +9,9 @@ void matrix_init_user(void) {
 
 enum layer_names {
     _BL,
-    _NAV,
+    _NAV_MEDIA,
     _SYM,
-    _NUM,
+    _NUM_FN,
     _MOUSE,
 };
 
@@ -34,22 +34,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z,         KC_X,         KC_C,           KC_V,         KC_B,          KC_N, KC_M,         KC_COMM,         KC_DOT,         KC_SLSH,
                                         LT(3, KC_TAB), LT(2, KC_BACKSPACE),          LT(1, KC_SPACE), KC_ENTER
     ),
-	[_NAV] = LAYOUT(
+	[_NAV_MEDIA] = LAYOUT(
         KC_MEDIA_PREV_TRACK, KC_MEDIA_NEXT_TRACK,   KC_VOLU,       KC_VOLD,                KC_TRNS,      KC_TRNS, KC_MS_WH_DOWN, KC_MS_WH_UP,  KC_MS_WH_LEFT, KC_MS_WH_RIGHT,
         KC_LEFT_GUI,         KC_LEFT_ALT,           KC_LEFT_CTRL,  KC_LEFT_SHIFT,          KC_TRNS,      KC_TRNS, KC_DOWN,       KC_UP,        KC_LEFT,       KC_RIGHT,
         KC_MEDIA_REWIND,     KC_MEDIA_FAST_FORWARD, KC_MUTE,       KC_MEDIA_PLAY_PAUSE,    KC_TRNS,      KC_TRNS, KC_PAGE_DOWN,  KC_PAGE_UP,   KC_HOME,       KC_END,
                                                                                KC_TRNS,                KC_TRNS,      KC_TRNS, KC_TRNS
     ),
 	[_SYM] = LAYOUT(
-        KC_TILDE,  KC_AT,               KC_HASH,               KC_DOLLAR,     KC_PERCENT,      KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK,            KC_QUESTION,          KC_COLON,
-        KC_EXCLAIM,KC_LEFT_PAREN,       KC_LEFT_BRACKET,       KC_UNDERSCORE, KC_MINUS,        KC_PLUS,       KC_EQUAL,     KC_RIGHT_BRACKET,       KC_RIGHT_PAREN,       KC_DOUBLE_QUOTE,
-        KC_GRAVE,  KC_LEFT_CURLY_BRACE, KC_LEFT_ANGLE_BRACKET, KC_BACKSLASH,  KC_PIPE,         KC_TRNS,       KC_TRNS,      KC_RIGHT_ANGLE_BRACKET, KC_RIGHT_CURLY_BRACE, KC_QUOTE,
+        KC_TILDE,  KC_AT,               KC_HASH,         KC_DOLLAR,     KC_PERCENT,                    KC_CIRCUMFLEX, KC_AMPERSAND,    KC_ASTERISK,            KC_QUESTION,          KC_TRNS,
+        KC_EXCLAIM,KC_LEFT_PAREN,       KC_LEFT_BRACKET, KC_UNDERSCORE, KC_MINUS,                      KC_PLUS,       KC_EQUAL,        KC_RIGHT_BRACKET,       KC_RIGHT_PAREN,       KC_COLON,
+        KC_GRAVE,  KC_LEFT_CURLY_BRACE, KC_TRNS,         KC_QUOTE,      KC_LEFT_ANGLE_BRACKET,         KC_RIGHT_ANGLE_BRACKET,       KC_DOUBLE_QUOTE, KC_BACKSLASH,   KC_RIGHT_CURLY_BRACE,   KC_PIPE,
                                                                            KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS
     ),
-    [_NUM] = LAYOUT(
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_7, KC_8, KC_9, KC_DOT,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,               KC_0,    KC_4, KC_5, KC_6, KC_COMMA,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_1, KC_2, KC_3, KC_TRNS,
+    [_NUM_FN] = LAYOUT(
+        KC_F1,        KC_F2,        KC_F3,        KC_F4, KC_F5,                                       KC_F6,   KC_F7, KC_F8, KC_F9, KC_F10,
+        LGUI_T(KC_1), LALT_T(KC_2), LCTL_T(KC_3), LSFT_T(KC_4), KC_5,          KC_6,    RSFT_T(KC_7), RCTL_T(KC_8),    LALT_T(KC_9),   RGUI_T(KC_0),
+        KC_SLASH,     KC_PLUS, KC_MINUS, KC_ASTERISK, KC_DOT,                       KC_COMMA, KC_EQUAL, KC_TRNS, KC_F11, KC_F12,
                                                KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS
     ),
     [_MOUSE] = LAYOUT(
