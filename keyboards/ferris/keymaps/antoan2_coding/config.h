@@ -18,22 +18,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #undef MOUSEKEY_DELAY
-#define MOUSEKEY_DELAY          0
+#define MOUSEKEY_DELAY 0
 #undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL       16
-#undef MOUSEKEY_WHEEL_DELAY
-#define MOUSEKEY_WHEEL_DELAY    0
-#undef MOUSEKEY_MAX_SPEED
-#define MOUSEKEY_MAX_SPEED      10
-#undef MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX    64
 #define MOUSEKEY_INTERVAL 16
-
+#undef MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY 0
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED 10
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX 64
+#define MOUSEKEY_INTERVAL 16
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 200
 #define QUICK_TAP_TERM 0
 #define TAPPING_TERM_PER_KEY
 
-
 #define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 10000
+#define SPLIT_USB_TIMEOUT_POLL 10
