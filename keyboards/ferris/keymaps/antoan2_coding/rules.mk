@@ -3,3 +3,5 @@ CAPS_WORD_ENABLE = yes
 MOUSEKEY_ENABLE = yes
 DYNAMIC_TAPPING_TERM_ENABLE = yes
 TAP_DANCE_ENABLE = yes
+
+SRC += features/custom_shift_keys.c
