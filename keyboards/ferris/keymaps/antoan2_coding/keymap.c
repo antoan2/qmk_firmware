@@ -31,6 +31,7 @@ enum layer_names {
 enum custom_keycodes {
     VIM_SAVE = SAFE_RANGE,
     VIM_SAVE_QUIT,
+    KC_E_AIGU,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -267,7 +268,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 	[_SYM] = LAYOUT(
         KC_TILDE,  KC_AT,               KC_HASH,         KC_DOLLAR,     KC_PERCENT,                    KC_CIRC, KC_AMPERSAND,    KC_ASTERISK,            KC_QUESTION,          KC_TRNS,
-        KC_EXCLAIM, LALT_T(KC_LEFT_PAREN),       LCTL_T(KC_LEFT_BRACKET), LSFT_T(KC_UNDERSCORE), KC_MINUS,                      KC_PLUS,       RSFT_T(KC_EQUAL),        RCTL_T(KC_RIGHT_BRACKET),       LALT_T(KC_RIGHT_PAREN),       KC_COLON,
+        KC_EXCLAIM, KC_LEFT_PAREN ,LCTL_T(KC_LEFT_BRACKET), KC_UNDERSCORE, KC_MINUS,                      KC_PLUS,       KC_EQUAL,        RCTL_T(KC_RIGHT_BRACKET),       KC_RIGHT_PAREN,       KC_COLON,
         KC_GRAVE,  KC_LEFT_CURLY_BRACE, KC_TRNS,         KC_QUOTE,      KC_LEFT_ANGLE_BRACKET,         KC_RIGHT_ANGLE_BRACKET,       KC_DOUBLE_QUOTE, KC_BACKSLASH,   KC_RIGHT_CURLY_BRACE,   KC_PIPE,
                                                                            KC_TRNS,       KC_TRNS,         KC_TRNS,       KC_TRNS
     ),
@@ -279,7 +280,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_SLASH, KC_7, KC_8, KC_9, KC_MINUS,
 KC_TRNS, KC_LEFT_ALT, KC_LEFT_CTRL, KC_LEFT_SHIFT, KC_TRNS,               KC_ASTERISK, KC_4, KC_5, KC_6, KC_PLUS,
 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_TRNS, KC_1, KC_2, KC_3, KC_EQUAL,
-                            KC_TRNS, KC_TRNS,               KC_0, KC_TRNS
+                            KC_TRNS, KC_TRNS,               KC_TRNS, KC_0
     ),
     [_MOUSE] = LAYOUT(
         KC_TRNS, KC_MS_BTN1, KC_TRNS, KC_MS_BTN2, KC_TRNS,             QK_DYNAMIC_TAPPING_TERM_UP,    KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_LEFT, KC_MS_WH_RIGHT,
