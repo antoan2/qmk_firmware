@@ -30,10 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_INTERVAL 16
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 #define QUICK_TAP_TERM 0
+#define PERMISSIVE_HOLD
 #define TAPPING_TERM_PER_KEY
 
 #define SPLIT_USB_DETECT
-#define SPLIT_USB_TIMEOUT 10000
-#define SPLIT_USB_TIMEOUT_POLL 10
+#define SPLIT_USB_TIMEOUT 30000
+#define SPLIT_USB_TIMEOUT_POLL 50

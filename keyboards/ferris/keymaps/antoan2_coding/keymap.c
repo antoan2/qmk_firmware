@@ -14,6 +14,7 @@ void matrix_init_user(void) {
 }
 
 #define SP_C_CEDI RALT(KC_COMMA)
+#define SP_C_CEDI_MAJ RSFT(RALT(KC_COMMA))
 #define DEAD_HAT RALT(KC_6)
 #define DEAD_GRAVE RALT(KC_GRAVE)
 #define DEAD_AIGU RALT(KC_QUOTE)
@@ -31,7 +32,8 @@ enum layer_names {
 enum custom_keycodes {
     VIM_SAVE = SAFE_RANGE,
     VIM_SAVE_QUIT,
-    KC_E_AIGU,
+    VIM_ESC_SAVE,
+    VIM_ESC_SAVE_QUIT,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -42,7 +44,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case VIM_SAVE:
             if (record->event.pressed) {
-                SEND_STRING(":w" SS_TAP(X_ENTER));
+                SEND_STRING(":w\n");
                 return false;
             } else {
                 // when keycode QMKBEST is released
@@ -50,7 +52,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case VIM_SAVE_QUIT:
             if (record->event.pressed) {
-                SEND_STRING(":wq" SS_TAP(X_ENTER));
+                SEND_STRING(":wq\n");
+                return false;
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case VIM_ESC_SAVE:
+            if (record->event.pressed) {
+                SEND_STRING("\e:w\n");
+                return false;
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case VIM_ESC_SAVE_QUIT:
+            if (record->event.pressed) {
+                SEND_STRING("\e:wq\n");
                 return false;
             } else {
                 // when keycode QMKBEST is released
@@ -60,150 +78,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-enum { TD_E_HAT = 0, TD_E_TREMA, TD_E_AIGU, TD_E_GRAVE, TD_A_HAT, TD_A_GRAVE, TD_C_CEDILLE, TD_I_HAT, TD_I_TREMA, TD_O_HAT, TD_U_HAT, TD_U_TREMA, TD_U_GRAVE };
+enum { TD_C_CEDILLE = 0 };
 
-void dance_e_hat(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("6") "e");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("6") "E");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_e_trema(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("\"") "e");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("\"") "E");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_e_aigu(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("e"));
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("E"));
-        reset_tap_dance(state);
-    }
-}
-
-void dance_e_grave(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("`") "e");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("`") "E");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_a_hat(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("6") "a");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("6") "A");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_a_grave(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("`") "a");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("`") "A");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_i_hat(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("6") "i");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("6") "I");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_i_trema(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("\"") "i");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("\"") "I");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_o_hat(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("6") "o");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("6") "O");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_o_grave(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("`") "o");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("`") "O");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_u_hat(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("6") "u");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("6") "U");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_u_trema(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("\"") "u");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("\"") "U");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_u_grave(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT("`") "u");
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_RALT("`") "U");
-        reset_tap_dance(state);
-    }
-}
-
-void dance_c_cedille(tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_RALT(",c"));
-        reset_tap_dance(state);
-    } else {
-        SEND_STRING(SS_LSFT(SS_RALT(",c")));
-        reset_tap_dance(state);
-    }
-}
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Esc, twice for Caps Lock
-    [TD_E_HAT] = ACTION_TAP_DANCE_FN(dance_e_hat), [TD_E_TREMA] = ACTION_TAP_DANCE_FN(dance_e_trema), [TD_E_AIGU] = ACTION_TAP_DANCE_FN(dance_e_aigu), [TD_E_GRAVE] = ACTION_TAP_DANCE_FN(dance_e_grave), [TD_A_HAT] = ACTION_TAP_DANCE_FN(dance_a_hat), [TD_A_GRAVE] = ACTION_TAP_DANCE_FN(dance_a_grave), [TD_C_CEDILLE] = ACTION_TAP_DANCE_FN(dance_c_cedille), [TD_I_HAT] = ACTION_TAP_DANCE_FN(dance_i_hat), [TD_I_TREMA] = ACTION_TAP_DANCE_FN(dance_i_trema), [TD_O_HAT] = ACTION_TAP_DANCE_FN(dance_o_hat), [TD_U_HAT] = ACTION_TAP_DANCE_FN(dance_u_hat), [TD_U_TREMA] = ACTION_TAP_DANCE_FN(dance_u_trema), [TD_U_GRAVE] = ACTION_TAP_DANCE_FN(dance_u_grave),
+    [TD_C_CEDILLE] = ACTION_TAP_DANCE_DOUBLE(SP_C_CEDI, SP_C_CEDI_MAJ)
 };
 
 // home row both index fingers
@@ -213,12 +92,17 @@ const uint16_t PROGMEM cap_word_combo[] = {LSFT_T(KC_F), RSFT_T(KC_J), COMBO_END
 // home row both last fingers
 // Allow access to the lgui key with a combo on the base layer home row
 const uint16_t PROGMEM lgui_combo[]    = {LGUI_T(KC_Z), RGUI_T(KC_SLSH), COMBO_END};
+// Simulate : and w / q, but to be tapped at the same time
 const uint16_t PROGMEM vim_save[]      = {LT(_SPECIALS, KC_SCLN), KC_W, COMBO_END};
 const uint16_t PROGMEM vim_save_quit[] = {LT(_SPECIALS, KC_SCLN), KC_Q, COMBO_END};
+// Almost the same, but the right will tap one key left (using ring)
+const uint16_t PROGMEM vim_esc_save[]      = {LALT_T(KC_L), KC_W, COMBO_END};
+const uint16_t PROGMEM vim_esc_save_quit[] = {LALT_T(KC_L), KC_Q, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),  COMBO(cap_word_combo, QK_CAPS_WORD_TOGGLE), COMBO(lgui_combo, KC_LEFT_GUI), // Equivalent to nav modifier + LGUI
     COMBO(vim_save, VIM_SAVE), COMBO(vim_save_quit, VIM_SAVE_QUIT),
+    COMBO(vim_esc_save, VIM_ESC_SAVE), COMBO(vim_esc_save_quit, VIM_ESC_SAVE_QUIT),
 };
 // clang-format on
 
@@ -289,9 +173,9 @@ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_TRN
                                                   KC_TRNS,    KC_TRNS,             KC_TRNS,  KC_TRNS
     ),
     [_SPECIALS] = LAYOUT(
-            KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-            KC_TRNS, KC_TRNS, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
-            KC_TRNS, KC_TRNS, TD_C_CEDILLE, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            KC_TRNS, SP_C_CEDI_MAJ, KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            KC_TRNS, SP_C_CEDI, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, TD(TD_C_CEDILLE), KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                         KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS
     )
 };
