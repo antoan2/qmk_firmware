@@ -15,6 +15,7 @@ void matrix_init_user(void) {
 
 #define SP_C_CEDI RALT(KC_COMMA)
 #define SP_C_CEDI_MAJ RSFT(RALT(KC_COMMA))
+#define SP_E_AIGU RALT(KC_E)
 #define DEAD_HAT RALT(KC_6)
 #define DEAD_GRAVE RALT(KC_GRAVE)
 #define DEAD_AIGU RALT(KC_QUOTE)
@@ -34,6 +35,8 @@ enum custom_keycodes {
     VIM_SAVE_QUIT,
     VIM_ESC_SAVE,
     VIM_ESC_SAVE_QUIT,
+    SP_E_GRAVE,
+    SP_E_HAT,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -69,6 +72,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VIM_ESC_SAVE_QUIT:
             if (record->event.pressed) {
                 SEND_STRING("\e:wq\n");
+                return false;
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case SP_E_GRAVE:
+            if (record->event.pressed) {
+            SEND_STRING(SS_RALT("`") "e");
+                return false;
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case SP_E_HAT:
+            if (record->event.pressed) {
+            SEND_STRING(SS_RALT("6") "e");
                 return false;
             } else {
                 // when keycode QMKBEST is released
@@ -173,7 +192,7 @@ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_TRN
                                                   KC_TRNS,    KC_TRNS,             KC_TRNS,  KC_TRNS
     ),
     [_SPECIALS] = LAYOUT(
-            KC_TRNS, SP_C_CEDI_MAJ, KC_TRNS, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            KC_TRNS, SP_C_CEDI_MAJ, SP_E_AIGU, SP_E_GRAVE, SP_E_HAT,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
             KC_TRNS, SP_C_CEDI, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
             KC_TRNS, KC_TRNS, TD(TD_C_CEDILLE), KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                         KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS
