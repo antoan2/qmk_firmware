@@ -20,6 +20,9 @@ void matrix_init_user(void) {
 #define DEAD_GRAVE RALT(KC_GRAVE)
 #define DEAD_AIGU RALT(KC_QUOTE)
 #define DEAD_TREMA RSFT(DEAD_AIGU)
+#define KC_CUT LCTL(KC_X)
+#define KC_COPY LCTL(KC_C)
+#define KC_PASTE LCTL(KC_V)
 
 enum layer_names {
     _BL,
@@ -28,6 +31,7 @@ enum layer_names {
     _NUM_FN,
     _MOUSE,
     _SPECIALS,
+    _MOUSE_FN,
 };
 
 enum custom_keycodes {
@@ -117,11 +121,14 @@ const uint16_t PROGMEM vim_save_quit[] = {LT(_SPECIALS, KC_SCLN), KC_Q, COMBO_EN
 // Almost the same, but the right will tap one key left (using ring)
 const uint16_t PROGMEM vim_esc_save[]      = {LALT_T(KC_L), KC_W, COMBO_END};
 const uint16_t PROGMEM vim_esc_save_quit[] = {LALT_T(KC_L), KC_Q, COMBO_END};
+const uint16_t PROGMEM switch_mouse_layer[] = {KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),  COMBO(cap_word_combo, QK_CAPS_WORD_TOGGLE), COMBO(lgui_combo, KC_LEFT_GUI), // Equivalent to nav modifier + LGUI
     COMBO(vim_save, VIM_SAVE), COMBO(vim_save_quit, VIM_SAVE_QUIT),
     COMBO(vim_esc_save, VIM_ESC_SAVE), COMBO(vim_esc_save_quit, VIM_ESC_SAVE_QUIT),
+   COMBO(switch_mouse_layer, TG(_MOUSE_FN)),
+
 };
 // clang-format on
 
@@ -196,5 +203,12 @@ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_TRN
             KC_TRNS, SP_C_CEDI, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
             KC_TRNS, KC_TRNS, TD(TD_C_CEDILLE), KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                         KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS
+    ),
+    // To be used when actually using the mouse. Switch using KC_X + KC_C combo
+    [_MOUSE_FN] = LAYOUT(
+            KC_TRNS, KC_W, KC_TRNS, KC_TRNS, KC_T,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            KC_TRNS, KC_TRNS, KC_LEFT_CTRL, KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+            TG(_MOUSE_FN), KC_CUT, KC_COPY, KC_PASTE, KC_ENTER,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                        KC_DEL, KC_BACKSPACE,               KC_TRNS, KC_TRNS
     )
 };
