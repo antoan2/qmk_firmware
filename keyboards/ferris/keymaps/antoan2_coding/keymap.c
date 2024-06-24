@@ -41,6 +41,7 @@ enum custom_keycodes {
     VIM_ESC_SAVE_QUIT,
     SP_E_GRAVE,
     SP_E_HAT,
+    SP_A_GRAVE,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -92,6 +93,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SP_E_HAT:
             if (record->event.pressed) {
             SEND_STRING(SS_RALT("6") "e");
+                return false;
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        case SP_A_GRAVE:
+            if (record->event.pressed) {
+            SEND_STRING(SS_RALT("`") "a");
                 return false;
             } else {
                 // when keycode QMKBEST is released
@@ -199,8 +208,8 @@ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                              KC_TRN
                                                   KC_TRNS,    KC_TRNS,             KC_TRNS,  KC_TRNS
     ),
     [_SPECIALS] = LAYOUT(
-            KC_TRNS, SP_C_CEDI_MAJ, SP_E_AIGU, SP_E_GRAVE, SP_E_HAT,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-            KC_TRNS, SP_C_CEDI, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
+            KC_TRNS, SP_C_CEDI_MAJ, SP_E_AIGU, SP_E_GRAVE, KC_TRNS,               KC_TRNS, SP_E_HAT, KC_TRNS, KC_TRNS, KC_TRNS,
+            SP_A_GRAVE, SP_C_CEDI, DEAD_AIGU, DEAD_GRAVE, KC_TRNS,               KC_TRNS, DEAD_HAT, DEAD_TREMA, KC_TRNS, KC_TRNS,
             KC_TRNS, KC_TRNS, TD(TD_C_CEDILLE), KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                         KC_TRNS, KC_TRNS,               KC_TRNS, KC_TRNS
     ),
